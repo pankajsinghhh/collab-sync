@@ -1,4 +1,4 @@
-import mongoose, { Schema, trusted } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const projectNoteSchema = new Schema(
   {
@@ -10,12 +10,12 @@ const projectNoteSchema = new Schema(
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: "User",
-      required: true
+      required: true,
     },
     content: {
-        type: String,
-        required: true
-    }
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true },
 );

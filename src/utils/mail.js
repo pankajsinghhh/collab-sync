@@ -1,74 +1,88 @@
 import Mailgen from "mailgen";
-import nodemailer from "nodemailer"
+import nodemailer from "nodemailer";
 
-const sendemail = async (options) => {
-  const mailgenerator = new Mailgen({
+const sendEmail = async (options) => {
+  const mailGenerator = new Mailgen({
     theme: "default",
     product: {
-      name: "TaskManager",
-      link: "https://taskmanagelink.com"
-    }
-  })
-  const emailtextual = mailgenerator.generatePlaintext(options.mailgenContent);
-  const emailhtml = mailgenerator.generate(options.mailgenContent)
+      name: "Task Manager",
+      link: "https://taskmanagelink.com",
+    },
+  });
+
+  const emailTextual = mailGenerator.generatePlaintext(options.mailgenContent);
+
+  const emailHtml = mailGenerator.generate(options.mailgenContent);
+
   const transporter = nodemailer.createTransport({
     host: process.env.MAILTRAP_SMTP_HOST,
     port: process.env.MAILTRAP_SMTP_PORT,
     auth: {
       user: process.env.MAILTRAP_SMTP_USER,
-      pass: process.env.MAILTRAP_SMTP_PASS
-    }
-  })
+      pass: process.env.MAILTRAP_SMTP_PASS,
+    },
+  });
+
   const mail = {
     from: "mail.taskmanager@example.com",
     to: options.email,
     subject: options.subject,
-    text: emailtextual,
-    html: emailhtml
-  }
+    text: emailTextual,
+    html: emailHtml,
+  };
+
   try {
-    await transporter.sendMail(mail)
+    await transporter.sendMail(mail);
   } catch (error) {
-    console.error("email service failed silently, this might have happened because of the     credentials, make sure that you have provided mailtrap credientials in .env file")
-    console.error("Error:",error);
+    console.error(
+      "Email service failed siliently. Make sure that you have provided your MAILTRAP credentials in the .env file",
+    );
+    console.error("Error: ", error);
   }
-}
-const emailverificationmailgencontent = (username, verificationurl) => {
+};
+
+const emailVerificationMailgenContent = (username, verficationUrl) => {
   return {
     body: {
       name: username,
-      intro: "welcome to out app",
+      intro: "Welcome to our App! we'are excited to have you on board.",
       action: {
-        instructions: "To verify email click on following button",
+        instructions:
+          "To verify your email please click on the following button",
         button: {
-          color: "#1aae5aff",
-          text: "verify your email",
-          link: verificationurl,
+          color: "#22BC66",
+          text: "Verify your email",
+          link: verficationUrl,
         },
       },
-      outro: "need help or have questions?, we would help",
+      outro:
+        "Need help, or have questions? Just reply to this email, we'd love to help.",
     },
   };
 };
-const fogotpassowordmailgencontent = (username, passwordreseturl) => {
+
+const forgotPasswordMailgenContent = (username, passwordResetUrl) => {
   return {
     body: {
       name: username,
-      intro: "we got a request to reset the password of your account",
+      intro: "We got a request to reset the password of your account",
       action: {
-        instructions: "To reset your password, click on the following button",
+        instructions:
+          "To reset your password click on the following button or link",
         button: {
-          color: "rgb(64, 25, 202)",
+          color: "#22BC66",
           text: "Reset password",
-          link: passwordreseturlurl,
+          link: passwordResetUrl,
         },
       },
-      outro: "need help of have questions?, we would help",
+      outro:
+        "Need help, or have questions? Just reply to this email, we'd love to help.",
     },
   };
 };
+
 export {
-    emailverificationmailgencontent,
-  fogotpassowordmailgencontent,
-    sendemail
+  emailVerificationMailgenContent,
+  forgotPasswordMailgenContent,
+  sendEmail,
 };

@@ -5,9 +5,9 @@
   "license": "ISC",
   "author": "Pankaj",
   "type": "module",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "pro": "nodemon src/index.js",
+    "dev": "nodemon src/index.js",
     "start": "node src/index.js"
   },
   "devDependencies": {
@@ -24,6 +24,7 @@
     "jsonwebtoken": "^9.0.3",
     "mailgen": "^2.0.34",
     "mongoose": "^9.8.1",
+    "multer": "^2.2.0",
     "nodemailer": "^9.0.3"
   }
 }
