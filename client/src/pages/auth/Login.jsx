@@ -29,68 +29,85 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          Login to CollabSync
-        </h1>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center px-4">
+      <div className="w-full max-w-md">
+        {/* Logo */}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-blue-600">CollabSync</h1>
+          <p className="text-gray-400 text-sm mt-1">Project Management Tool</p>
+        </div>
 
-        {error && (
-          <div className="bg-red-100 text-red-600 p-3 rounded mb-4 text-sm">
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Email
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter your email"
-              required
-            />
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold text-gray-900">Welcome back</h2>
+            <p className="text-gray-400 text-sm mt-1">
+              Sign in to your account
+            </p>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Password
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter your password"
-              required
-            />
-          </div>
+          {error && (
+            <div className="bg-red-50 border border-red-100 text-red-500 p-3 rounded-xl mb-4 text-sm flex items-center gap-2">
+              <span>⚠️</span> {error}
+            </div>
+          )}
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition font-medium"
-          >
-            {loading ? "Logging in..." : "Login"}
-          </button>
-        </form>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+                Email
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
 
-        <p className="text-sm text-center text-gray-600 mt-4">
-          Don't have an account?{" "}
-          <Link to="/register" className="text-blue-600 hover:underline">
-            Register
-          </Link>
-        </p>
+            <div>
+              <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+                Password
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
 
-        <p className="text-sm text-center text-gray-600 mt-2">
-          <Link to="/forgot-password" className="text-blue-600 hover:underline">
-            Forgot Password?
-          </Link>
-        </p>
+            <div className="flex justify-end">
+              <Link
+                to="/forgot-password"
+                className="text-xs text-blue-500 hover:text-blue-700 transition"
+              >
+                Forgot password?
+              </Link>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-blue-600 text-white py-2.5 rounded-xl hover:bg-blue-700 text-sm font-semibold transition shadow-sm disabled:opacity-60"
+            >
+              {loading ? "Signing in..." : "Sign In"}
+            </button>
+          </form>
+
+          <p className="text-sm text-center text-gray-400 mt-6">
+            Don't have an account?{" "}
+            <Link
+              to="/register"
+              className="text-blue-600 hover:underline font-medium"
+            >
+              Sign up
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

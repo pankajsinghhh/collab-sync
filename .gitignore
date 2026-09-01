@@ -1,2 +1,7 @@
-node_modules
+node_modules/
+client/node_modules/
 .env
+client/.env
+dist/
+client/dist/
+.DS_Store

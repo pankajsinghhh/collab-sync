@@ -63,15 +63,14 @@ const userSchema = new Schema(
   },
 );
 
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) return ;
 
-  this.password = await brcypt.hash(this.password, 10);
-  next();
+  this.password = await bcrypt.hash(this.password, 10);
 });
 
 userSchema.methods.isPasswordCorrect = async function (password) {
-  return await brcypt.compare(password, this.password);
+  return await bcrypt.compare(password, this.password);
 };
 
 userSchema.methods.generateAccessToken = function () {
