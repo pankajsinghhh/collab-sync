@@ -315,7 +315,7 @@ This project is licensed under the ISC License.
 
 <div align="center">
 
-Built with ❤️ by **Pankaj Singh**
+Built by **Pankaj Singh**
 
 ⭐ Star this repo if you found it helpful!
 
