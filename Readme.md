@@ -58,7 +58,7 @@
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/YOUR_USERNAME/collabsync.git
+git clone https://github.com/pankajsinghhh/collabsync.git
 cd collabsync
 ```
 
